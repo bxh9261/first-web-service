@@ -1,6 +1,3 @@
-const jsonHandler = require('./jsonResponses.js');
-const htmlHandler = require('./htmlResponses.js');
-
 const name = 'fred';
 const car = {
   make: 'Ford',
@@ -15,13 +12,16 @@ const http = require('http');
 const url = require('url');
 const query = require('querystring');
 
+const jsonHandler = require('./jsonResponses.js');
+const htmlHandler = require('./htmlResponses.js');
+
 // 3 - locally this will be 3000, on Heroku it will be assigned
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 const urlStruct = {
-    '/':htmlHandler.getIndexResponse,
-    '/random-number':jsonHandler.getRandomNumberResponse,
-    notFound:htmlHandler.get404Response
+  '/': htmlHandler.getIndexResponse,
+  '/random-number': jsonHandler.getRandomNumberResponse,
+  notFound: htmlHandler.get404Response,
 };
 
 // 7 - this is the function that will be called every time a client request comes in
@@ -41,10 +41,10 @@ const onRequest = (request, response) => {
   console.log('params=', params);
   console.log('max=', max);
 
-  if (urlStruct[pathname]){
-      urlStruct[pathname](request,response,params);
-  }else{
-      urlStruct['notFound'](request,response,params);
+  if (urlStruct[pathname]) {
+    urlStruct[pathname](request, response, params);
+  } else {
+    urlStruct.notFound(request, response, params);
   }
 };
 

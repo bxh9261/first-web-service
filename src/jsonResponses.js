@@ -12,14 +12,14 @@ const randomNumberJSON = (max = 1) => {
   return JSON.stringify(responseObj);
 };
 
-const getRandomNumberResponse = (request,response,params) => {
-  response.writeHead(200, { 'Content-Type': 'application/json'});
+const getRandomNumberResponse = (request, response, params) => {
+  response.writeHead(200, { 'Content-Type': 'application/json' });
   response.write(randomNumberJSON(params.max));
   response.end();
 };
 
-//module.exports = {
-//  getRandomNumberResponse;  
-//};
+// module.exports = {
+//  getRandomNumberResponse;
+// };
 
 module.exports.getRandomNumberResponse = getRandomNumberResponse;
